@@ -1,64 +1,66 @@
 public class linkList {
-    static class node {
-        int data;
-        node next;
+    Node head;
 
-        node(int data) {
+    class Node {
+        String data;
+        Node next;
+
+        Node(String data) {
             this.data = data;
             this.next = null;
         }
+
     }
 
-    static node partition(node head, int x) {
-        node small = new node(0);
-        node big = new node(0);
-
-        node smalll = small;
-        node biggg = big;
-
-        while (head != null) {
-
-            if (head.data < x) {
-                smalll.next = head;
-                smalll = smalll.next;
-            } else {
-                biggg.next = head;
-                biggg = biggg.next;
-            }
-            head = head.next; // ✅ move forward
+    // add - first
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
         }
-
-        // End big list
-        biggg.next = null;
-        // Connect small and big
-        smalll.next = big.next;
-
-        return small.next;
+        newNode.next = head;
+        head = newNode;
     }
 
-    // Helper to print list
-    static void print(node head) {
-        while (head != null) {
-            System.out.print(head.data + " -> ");
-            head = head.next;
+    // add - last
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
         }
-        System.out.println("null");
+        Node currNode = head;
+        while (currNode.next != null) {
+            currNode = currNode.next;
+        }
+        currNode.next = newNode;
+    }
+
+    // print
+    public void printList() {
+        if (head == null) {
+            System.out.print("list is empty");
+            return;
+        }
+        Node currNode = head;
+        while (currNode.next != null) {
+            System.out.print(currNode.data + " -> ");
+            currNode = currNode.next;
+        }
+        System.out.println("NULL");
     }
 
     public static void main(String[] args) {
+        linkList list = new linkList();
+        list.addFirst("a");
+        list.addFirst("is");
+        list.printList();
 
-        node head = new node(11);
-        head.next = new node(5);
-        head.next.next = new node(2);
-        head.next.next.next = new node(3);
-        head.next.next.next.next = new node(15);
+        list.addLast("list");
+        list.printList();
+        list.addFirst("this");
+        list.printList();
 
-        System.out.print("Before: ");
-        print(head);
-
-        head = partition(head, 11);
-
-        System.out.print("After: ");
-        print(head);
     }
 }
