@@ -21,10 +21,12 @@
 
 public class calPowerRecursion {    //stack height logn
     public static int calcPower(int x, int n) {
-        if (n == 0) {// base case 1
+        if (n == 0) 
+        {     // base case 1
             return 1;
         }
-        if (x == 0) {// base case 2
+        if (x == 0)
+        {    // base case 2
             return 0;
         }
 
