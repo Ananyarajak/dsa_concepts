@@ -13,7 +13,7 @@ public class arrayList {
         list.add(5);
         System.out.println(list);
 
-        // get element
+        // get element to list
         int element = list.get(0);
         System.out.println(element);
 
